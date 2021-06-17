@@ -1,11 +1,14 @@
 package com.example.demo.customer;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 //import org.hibernate.annotations.Index;
 //import org.springframework.data.relational.core.mapping.Table;
 import javax.persistence.*;
-
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
 @Entity
@@ -33,6 +36,11 @@ public class Customer {
     private String name;
     private String nickname;
     private String password;
+    private String email;
+    private String city;
+    private String street;
+    private String zipCode;
+
     //private int discount;
 
     public Customer(int id, String name, String nickname, String password) {
@@ -41,9 +49,5 @@ public class Customer {
         this.nickname = nickname;
         this.password = password;
        // this.discount = discount;
-    }
-
-    public Customer() {
-
     }
 }
