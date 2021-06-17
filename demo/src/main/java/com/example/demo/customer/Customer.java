@@ -50,4 +50,14 @@ public class Customer {
         this.password = password;
        // this.discount = discount;
     }
+
+    public Customer(String name, String nickname, String password, String email, String city, String street, String zipCode) {
+        this.name = name;
+        this.nickname = nickname;
+        this.password = password;
+        this.email = email;
+        this.city = city;
+        this.street = street;
+        this.zipCode = zipCode;
+    }
 }
