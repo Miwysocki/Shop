@@ -34,4 +34,9 @@ public class Product {
     private int categoryID;
 
 
+    public Product(String name, String description, BigDecimal price) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+    }
 }

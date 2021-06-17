@@ -3,18 +3,20 @@ package com.example.demo.view;
 import com.example.demo.customer.Customer;
 import com.example.demo.customer.CustomerRepository;
 import com.example.demo.customer.CustomerService;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.PageTitle;
 
 
-@Route("CustomerForm")
-@PageTitle("Hello World")
+@Route(value = "CustomerForm")
+@PageTitle("Welcome!")
 public class CustomerForm extends VerticalLayout {
 
     private TextField name;
@@ -26,8 +28,11 @@ public class CustomerForm extends VerticalLayout {
     private TextField zipCode;
     private Button save;
     private CustomerRepository repo;
+    private Binder<Customer> binder = new Binder<>(Customer.class);
 
     public CustomerForm(CustomerRepository repo) {
+
+
         setSizeFull();
         setAlignItems(Alignment.CENTER);
         setJustifyContentMode(JustifyContentMode.CENTER);
@@ -44,11 +49,13 @@ public class CustomerForm extends VerticalLayout {
         add(name,nickname,password,email,city,street,zipCode, save);
       //  setVerticalComponentAlignment(Alignment.END, name, sayHello);
 
+
         save.addClickListener(e -> {
             Notification.show("Hello " + name.getValue());
             Customer newCustomer = new Customer(name.getValue(),nickname.getValue(),password.getValue(), email.getValue(), city.getValue(),street.getValue(), zipCode.getValue());
 
             repo.save(newCustomer);
+            UI.getCurrent().navigate(HomeView.class);
         });
     }
 

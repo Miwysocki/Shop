@@ -14,5 +14,5 @@ public class OrderController {
    @Autowired
     public OrderController(OrderService orderService) {this.orderService = orderService;}
     @GetMapping
-    public List<Order> getOrders() { return orderService.getOrders();}
+    public List<Orders> getOrders() { return orderService.getOrders();}
 }

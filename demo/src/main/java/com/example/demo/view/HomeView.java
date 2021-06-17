@@ -11,12 +11,11 @@ import com.vaadin.flow.router.Route;
 @Route("")
 public class HomeView extends VerticalLayout {
     public HomeView() {
-        add(new H1("Home"));
         createHeader();
     }
 
     private void createHeader() {
-        H1 logo = new H1("Vaadin CRM");
+        H1 logo = new H1("Home");
         logo.addClassName("logo");
 
         Anchor logout = new Anchor("logout", "Log out");
