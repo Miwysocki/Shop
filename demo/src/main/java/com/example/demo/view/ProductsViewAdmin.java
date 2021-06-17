@@ -44,8 +44,8 @@ public class ProductsViewAdmin extends VerticalLayout {
         grid.addSelectionListener(event -> {
             this.selected = event.getAllSelectedItems();
         });
-        grid.addItemClickListener(event ->
-                UI.getCurrent().getPage().setLocation("http://localhost:9090//" + event.getItem().getId()));
+//        grid.addItemClickListener(event ->
+//                UI.getCurrent().getPage().setLocation("http://localhost:9090//" + event.getItem().getId()));
         add(grid);
         add(new Button("Delete", event -> DeleteSelected()));
 
@@ -57,6 +57,7 @@ public class ProductsViewAdmin extends VerticalLayout {
                         new Button("Add", (event) -> {
                             Product newProduct = new Product(name.getValue(),description.getValue(),new BigDecimal(price.getValue()));
                             productService.addProduct(newProduct);
+                            UI.getCurrent().getPage().reload();
                         })
                 )
         );
@@ -71,6 +72,7 @@ public class ProductsViewAdmin extends VerticalLayout {
             LOGGER.info("Product " + p.getName() + " deleted");
         }
         this.selected = new HashSet<>();
+        UI.getCurrent().navigate(ProductsViewAdmin.class);
     }
 
 
