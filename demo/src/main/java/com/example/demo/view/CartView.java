@@ -1,6 +1,7 @@
 package com.example.demo.view;
 
 import com.example.demo.Product.Product;
+import com.example.demo.mail.MailSender;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
@@ -59,7 +60,15 @@ public class CartView extends VerticalLayout {
             //nothhig in the cart
             add(new H1("Your cart is empty"));
             add(new Button("go shoping!", event -> goShoppig()));
+            add(new Button("send email!", event -> sendTestEmail()));
         }
+    }
+    private void sendTestEmail(){
+        sendEmail("przemyslaw.wiszniewski@o2.pl","test","bizjav");
+    }
+    private void sendEmail(String to, String subject, String message){
+        MailSender ms = new MailSender();
+        ms.sendSimpleMessage(to,subject,message);
     }
 
     private void goShoppig() {
