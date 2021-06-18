@@ -31,7 +31,9 @@ public class CustomerForm extends VerticalLayout {
     private Binder<Customer> binder = new Binder<>(Customer.class);
 
     public CustomerForm(CustomerRepository repo) {
-
+        
+        Nav navbar = new Nav();
+        add(navbar);
 
         setSizeFull();
         setAlignItems(Alignment.CENTER);
