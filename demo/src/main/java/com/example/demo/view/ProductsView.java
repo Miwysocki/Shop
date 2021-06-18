@@ -24,13 +24,16 @@ import static com.example.demo.view.CartView.inCart;
 @Route("products")
 @PageTitle("Products!")
 public class ProductsView extends VerticalLayout {
-
+    
+    
     private static final Logger LOGGER = LoggerFactory.getLogger(ProductsView.class);
     private Set<Product> selected;
     private final ProductService productService;
     private TextField quantity;
 
     public ProductsView(ProductService productService) {
+        Nav navbar = new Nav();
+        add(navbar);
         this.productService = productService;
         List<Product> products = productService.getProducts();
 
