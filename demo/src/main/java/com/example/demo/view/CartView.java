@@ -29,7 +29,9 @@ public class CartView extends VerticalLayout {
     public static ArrayList<Product> inCart;
 
     public CartView() {
-
+        
+        Nav navbar = new Nav();
+        add(navbar);
         if(inCart != null){
             //giving new ID in cart so they
             for(int i=0; i < inCart.size();i++){
