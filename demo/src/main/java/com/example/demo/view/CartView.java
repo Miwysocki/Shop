@@ -32,9 +32,6 @@ public class CartView extends VerticalLayout {
         if(inCart != null){
             //giving new ID in cart so they
             for(int i=0; i < inCart.size();i++){
-//                if(i == 0 ){inCart.get(i).setId(0);}
-//                else
-//                    inCart.get(i).setId(inCart.get(i-1).getId()+1);
                 inCart.get(i).setId(i);
             }
 
@@ -67,6 +64,7 @@ public class CartView extends VerticalLayout {
     }
 
     private void Finalize() {
+
     }
 
     private void DeleteSelected() {
