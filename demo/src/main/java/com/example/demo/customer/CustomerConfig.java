@@ -20,9 +20,13 @@ public class CustomerConfig {
                   "pass"
           );
 
+         repository.save(nowy);
+         /*
           repository.saveAll(
                   List.of(nowy)
           );
+
+          */
         };
     }
 

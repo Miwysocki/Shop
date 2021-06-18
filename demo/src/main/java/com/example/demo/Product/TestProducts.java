@@ -21,9 +21,13 @@ public class TestProducts {
             p.setPrice(new BigDecimal(2));
             p.setDescription("świeże");
 
+            repository.save(p);
+            /*
             repository.saveAll(
                     List.of(p)
             );
+
+             */
         };
     }
 }
