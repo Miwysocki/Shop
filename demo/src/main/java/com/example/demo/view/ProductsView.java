@@ -39,8 +39,8 @@ public class ProductsView extends VerticalLayout {
         grid.setItems(products);
         grid.addColumn(Product::getId).setHeader("ID");
         grid.addColumn(Product::getName).setHeader("Name");
-        grid.addColumn(Product::getPrice).setHeader("Price");
         grid.addColumn(Product::getDescription).setHeader("Description");
+        grid.addColumn(Product::getPrice).setHeader("Price");
         grid.setSelectionMode(Grid.SelectionMode.MULTI);
 
         grid.addSelectionListener(event -> {
@@ -51,6 +51,7 @@ public class ProductsView extends VerticalLayout {
         add(grid);
         add(quantity = new TextField("quantity"));
         add(new Button("Add to a cart", event -> AddSelected( Integer.parseInt(quantity.getValue()))));
+        add(new Button("Go to cart!", event -> goToCart()));
     }
 
     private void AddSelected(int quantity) {
@@ -70,4 +71,14 @@ public class ProductsView extends VerticalLayout {
             UI.getCurrent().getPage().reload();
         }
     }
+
+    private void goToCart() {
+        UI.getCurrent().navigate(CartView.class);
+    }
 }
+/*
+*
+            add(new Button("go shoping!", event -> goShoppig()));
+        }
+    }
+*/
