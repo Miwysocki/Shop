@@ -41,6 +41,7 @@ public class CartView extends VerticalLayout {
             grid.addColumn(Product::getId).setHeader("ID");
             grid.addColumn(Product::getName).setHeader("Name");
             grid.addColumn(Product::getDescription).setHeader("Description");
+            grid.addColumn(Product::getPrice).setHeader("Price");
             grid.setSelectionMode(Grid.SelectionMode.MULTI);
 
             grid.addSelectionListener(event -> {
@@ -50,14 +51,15 @@ public class CartView extends VerticalLayout {
                     UI.getCurrent().getPage().setLocation("http://localhost:9090//" + event.getItem().getId()));
             add(grid);
 
-        add(new Button("Delete", event -> DeleteSelected()));
-        add(new Button("Finalize", event -> Finalize()));
+            add(new Button("back go products", event -> goShoppig()));
+            add(new Button("Delete", event -> DeleteSelected()));
+            add(new Button("Finalize", event -> Finalize()));
+            add(new Button("send email!", event -> sendTestEmail()));
         }
         else{
             //nothhig in the cart
             add(new H1("Your cart is empty"));
             add(new Button("go shoping!", event -> goShoppig()));
-            add(new Button("send email!", event -> sendTestEmail()));
         }
     }
     private void sendTestEmail(){

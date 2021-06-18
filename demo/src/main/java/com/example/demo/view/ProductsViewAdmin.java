@@ -39,6 +39,8 @@ public class ProductsViewAdmin extends VerticalLayout {
         grid.setItems(products);
         grid.addColumn(Product::getId).setHeader("ID");
         grid.addColumn(Product::getName).setHeader("Name");
+        grid.addColumn(Product::getDescription).setHeader("Description");
+        grid.addColumn(Product::getPrice).setHeader("Price");
         grid.setSelectionMode(Grid.SelectionMode.MULTI);
 
         grid.addSelectionListener(event -> {
