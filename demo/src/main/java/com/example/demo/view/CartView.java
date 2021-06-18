@@ -1,7 +1,9 @@
 package com.example.demo.view;
 
 import com.example.demo.Product.Product;
+import com.example.demo.customer.Customer;
 import com.example.demo.mail.MailSender;
+import com.example.demo.order.Orders;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
@@ -14,6 +16,8 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -59,7 +63,6 @@ public class CartView extends VerticalLayout {
             add(new Button("back go products", event -> goShoppig()));
             add(new Button("Delete", event -> DeleteSelected()));
             add(new Button("Finalize", event -> Finalize()));
-            add(new Button("send email!", event -> sendTestEmail()));
         }
         else{
             //nothhig in the cart
@@ -67,19 +70,22 @@ public class CartView extends VerticalLayout {
             add(new Button("go shoping!", event -> goShoppig()));
         }
     }
-    private void sendTestEmail(){
-        sendEmail("przemyslaw.wiszniewski@o2.pl","test","bizjav");
-    }
-    private void sendEmail(String to, String subject, String message){
-        MailSender ms = new MailSender();
-        ms.sendSimpleMessage(to,subject,message);
-    }
 
     private void goShoppig() {
         UI.getCurrent().navigate(ProductsView.class);
     }
 
     private void Finalize() {
+        if(inCart.isEmpty())
+            return;
+        Orders order = new Orders();
+        List<Product> products = inCart;
+        inCart = new ArrayList<>();
+        Customer customer = new Customer();
+        customer.setEmail(((UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername());
+        order.setCustomer(customer);
+        order.setProducts(products);
+        new MailSender().sendOrderMessage(order);
     }
 
     private void DeleteSelected() {
