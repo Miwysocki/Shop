@@ -3,6 +3,7 @@ package com.example.demo.view;
 import com.example.demo.Product.Product;
 import com.example.demo.customer.Customer;
 import com.example.demo.mail.MailSender;
+import com.example.demo.order.OrderService;
 import com.example.demo.order.Orders;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
@@ -31,8 +32,10 @@ public class CartView extends VerticalLayout {
     private static final Logger LOGGER = LoggerFactory.getLogger(CartView.class);
     private Set<Product> selected;
     public static ArrayList<Product> inCart;
+    private OrderService orderService;
 
-    public CartView() {
+    public CartView(OrderService orderService) {
+        this.orderService = orderService;
 
         Nav navbar = new Nav();
         add(navbar);
@@ -82,6 +85,8 @@ public class CartView extends VerticalLayout {
         customer.setEmail(((UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername());
         order.setCustomer(customer);
         order.setProducts(products);
+        orderService.addOrder(order);
+
         new MailSender().sendOrderMessage(order);
     }
 
