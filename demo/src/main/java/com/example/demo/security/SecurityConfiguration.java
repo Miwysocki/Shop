@@ -26,7 +26,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     public UserDetailsService userDetailsService() {
         UserDetails user =
-                User.withUsername("user")
+                User.withUsername("user@mail.com")
                         .password("{noop}user")
                         .roles("USER")
                         .build();
