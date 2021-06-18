@@ -11,6 +11,8 @@ import com.vaadin.flow.router.Route;
 @Route("")
 public class HomeView extends VerticalLayout {
     public HomeView() {
+        Nav navbar = new Nav();
+        add(navbar);
         createHeader();
     }
 
@@ -20,7 +22,7 @@ public class HomeView extends VerticalLayout {
 
         Anchor logout = new Anchor("logout", "Log out");
 
-        HorizontalLayout header = new HorizontalLayout(new DrawerToggle(), logo, logout);
+        HorizontalLayout header = new HorizontalLayout(logo, logout);
         header.expand(logo);
         header.setDefaultVerticalComponentAlignment(FlexComponent.Alignment.CENTER);
         header.setWidth("100%");
